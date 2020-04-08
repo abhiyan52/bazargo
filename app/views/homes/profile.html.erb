@@ -1,0 +1,8 @@
+<div class="card col-12" >
+  <div class="card-body">
+    <h5 class="card-title"><%= "#{current_user.full_name}'s Profile" %></h5>
+    <p class="card-text">Eat Sleep Repeat</p>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger") %>        
+  </div>
+</div>
+
