@@ -6,7 +6,7 @@ class Product < ApplicationRecord
     # ActiveRecord Validation
 
     # Validate the url field
-    validates :url, presence: true, uniqueness: true, format: /https:\/\/hamrobazaar\.com\/i[0-9]{7}-([\-\.]{1}[a-z0-9]+)*\.html/ix.freeze
+    validates :url, presence: true, uniqueness: true, format: /https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/ix.freeze
     # Validate presence of title field
     validates :title, presence: true
     # Validation of Url
@@ -22,7 +22,7 @@ class Product < ApplicationRecord
     end
 
     def url_valid?(url)
-      product_url = URI.parse(product_url) rescue false
+      product_url = URI.parse(url) rescue false
       product_url.kind_of?(URI::HTTP) || product_url.kind_of?(URI::HTTPS)
     end 
 end
