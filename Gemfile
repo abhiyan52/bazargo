@@ -62,8 +62,8 @@ gem 'nokogiri'
 # Background processor
 gem 'sidekiq', '~>6.0.0'
 
-gem 'cloudflare_clearance', :git => 'https://github.com/nuII0/cloudflare_clearance.git'
-
+# This is required for selenium
 gem 'webdrivers'
 
+## This mimics a headless browser for fetching content
 gem 'headless'
