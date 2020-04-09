@@ -38,7 +38,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '>=2.53.4'
 end
 
 group :development do
@@ -58,3 +58,12 @@ gem 'devise'
 
 ## This gem for web scrapping
 gem 'nokogiri'
+
+# Background processor
+gem 'sidekiq', '~>6.0.0'
+
+# This is required for selenium
+gem 'webdrivers'
+
+## This mimics a headless browser for fetching content
+gem 'headless'
