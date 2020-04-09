@@ -1,5 +1,63 @@
+<div class="container">
+    <div class="row">
+        <h3 class="text-center w-100 pt-2">Products</h3>
+        <hr class="w-100" />
+        <div class="row w-100">
+            <div class="search w-100">
+                <%= form_with(url: scrape_product_products_path(), method: :get, class: "search-form", id: "search-form") do |f|%>
+                <%= f.text_field :search_url, placeholder: "Enter or paste link here eg. https://hamrobazaar.com/i2149832-mi-note-8-pro.html", id: "search_url"%>
+                <%= f.submit "Submit",id: "submit-button"%>
+                <% end %>
+            </div>
+        </div>
+        <div class="row available-products" id="product_render_point">
+            <% @products.each do |product| %>
+            <%= render partial: "products/partials/product_card", locals: {product: product}%>
+            <% end %>
+        </div>
+        <div class="col-md-12 col-sm-12 card placeholder w-100 hidden" id="placeholder_loader">
+            <div class="bars">
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar1 loading"></div>
+                <div class="bar bar2 loading"></div>
+                <div class="bar bar1 loading"></div>
+            </div>
+        </div>
 
+        <div>
+        </div>
+        <script type="text/javascript">
+            var submitTimeout;
 
-<a href = "https://hamrobazaar.com/i2149405-house-on-sale-at-nayabazar-khushibun-town-planning.html">
- hello
-</a>
+            $("#placeholder_loader").hide();
+
+            $("#search_url").keyup(function () {
+                clearTimeout(submitTimeout);
+                submitTimeout = setTimeout(() => $("#submit-button").click(), 3000);
+            });
+
+            $("#search-form").submit(function (e) {
+                let searchURL = $("#search_url").val();
+                if (!searchURL.match(/https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/)) {
+                    toastr.error("Please enter a valid url");
+                    e.preventDefault();
+                    return false;
+                }
+                $("#placeholder_loader").show();
+                $("#product_render_point").hide();
+            });
+        </script>

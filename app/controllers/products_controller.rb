@@ -17,6 +17,18 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def scrape_product
+    @search_url = params[:search_url]
+    @product = Product.find_or_initialize_by(url: @search_url)
+    if @product.new_record?
+      @product.load_product
+      @product.reload if @product.save
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /products/1/edit
   def edit
   end

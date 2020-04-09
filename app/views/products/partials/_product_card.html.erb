@@ -1,0 +1,13 @@
+<div class="col-md-6 card product-card">
+    <img class="card-img-top img img-responsive product-card-image" src="<%= product.image_url %>"
+        alt="<%= product.title %>">
+    <div class="card-body">
+        <h6 class="card-title font-weight-bold"><%= product.title %></h5>
+            <p> Contact Number: <span class="text-primary"><%= product.mobile_number%></span> </p>
+            <hr />
+            <p> Description </p>
+            <div class="card-text product-details"><%= product.description.html_safe %></div>
+            <hr />
+            <a href="<%= product.url %>" class="btn btn-primary w-100">View</a>
+    </div>
+</div>

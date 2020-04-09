@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
     def index
-        
+      @products = Product.all        
     end
 
     def sign_in_user
