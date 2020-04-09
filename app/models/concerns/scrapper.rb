@@ -50,15 +50,15 @@ module Scrapper
           Headless.ly do
             begin
               driver = Selenium::WebDriver.for :firefox
-              driver.navigate.to url
+              driver.navigate.to url              
+              sleep(3 + retries)
               page_source = driver.page_source
               unless page_source.match("cf-browser-verification cf-im-under-attack")
                 return driver.page_source 
-              end
-            rescue StandardError => e
-              
+              end            
+            rescue  StandardError => e
+               # Failed to get data                
             end
-            sleep(5 + retries)
             retries += 1
           end   
         end

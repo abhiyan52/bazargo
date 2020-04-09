@@ -23,6 +23,8 @@ class ProductsController < ApplicationController
     if @product.new_record?
       @product.load_product
       @product.reload if @product.save
+    else
+      RefreshStaleProductWorker.perform_async(@product.id) if @product.is_stale?
     end
     respond_to do |format|
       format.js
