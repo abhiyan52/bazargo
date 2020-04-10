@@ -13,7 +13,7 @@ module Scrapper
       description =  product_document.css("table[bgcolor='#C6C6D9'][style='margin-top:10px'] tr:last")[2].to_s 
       product_content = product_document.css(".mainbody>tbody>tr:nth-child(2) td[valign='top']>table#lblue").text   
       mobile_number = product_content.match(/Mobile Phone: ([0-9]*)/)[1] rescue nil
-      price = product_content.match("Price:Rs\. ([0-9,]*)")[1] rescue nil  
+      price = product_content.match("Price:Rs\. ([0-9,]*)")[1].gsub(",","").to_f rescue nil  
       image_url = product_document.at_css("#outimg img")['src'] rescue nil
       return {
         url: url,
@@ -51,15 +51,16 @@ module Scrapper
             begin
               driver = Selenium::WebDriver.for :firefox
               driver.navigate.to url              
-              sleep(3 + retries)
+              sleep(5 + retries)
               page_source = driver.page_source
-              unless page_source.match("cf-browser-verification cf-im-under-attack")
-                return driver.page_source 
+              puts "-------------- SLEEP OVER ----------------"
+              if page_source.match("cf-browser-verification cf-im-under-attack").blank?
+                return page_source 
               end            
             rescue  StandardError => e
                # Failed to get data                
             end
-            retries += 1
+             retries += 1
           end   
         end
     end

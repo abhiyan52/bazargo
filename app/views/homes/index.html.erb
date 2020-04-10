@@ -42,12 +42,15 @@
         </div>
         <script type="text/javascript">
             var submitTimeout;
-
+            var requestPending = false;   
             $("#placeholder_loader").hide();
 
             $("#search_url").keyup(function () {
                 clearTimeout(submitTimeout);
-                submitTimeout = setTimeout(() => $("#submit-button").click(), 3000);
+                submitTimeout = setTimeout(() => {
+                    if(!requestPending)
+                    $("#submit-button").click()
+                }, 3000);
             });
 
             $("#search-form").submit(function (e) {
@@ -55,12 +58,14 @@
                 // Remove URL params 
                 if(searchURL.indexOf("?") != -1){
                   searchURL = searchURL.slice(0,searchURL.indexOf("?"));      
+                  $("#search_url").val(searchURL);
                 }
                 if (!searchURL.match(/https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/)) {
                     toastr.error("Please enter a valid url");
                     e.preventDefault();
                     return false;
                 }
+                requestPending = true;
                 $("#placeholder_loader").show();
                 $("#product_render_point").hide();
             });

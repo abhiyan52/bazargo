@@ -4,6 +4,7 @@
     <div class="card-body">
         <h6 class="card-title font-weight-bold"><%= product.title %></h5>
             <p> Contact Number: <span class="text-primary"><%= product.mobile_number%></span> </p>
+            <p> Price: <span class="text-secondary"><%= product.price.to_i%></span> </p>
             <hr />
             <p> Description </p>
             <div class="card-text product-details"><%= product.description.html_safe %></div>
