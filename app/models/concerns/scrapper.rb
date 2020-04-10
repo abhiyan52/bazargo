@@ -4,6 +4,8 @@ module Scrapper
   class ScrapeProduct
     require 'open-uri'
 
+
+    
     ## This method take a url and scrapes data from it
       # It creates an instance of Product class which represents the product containing data from scrapped site
     def self.scrape_product(url)
