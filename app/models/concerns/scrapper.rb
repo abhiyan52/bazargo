@@ -29,39 +29,41 @@ module Scrapper
     ## This method gets the content from the given url
     def self.get_content(url)
       content = ""
-      begin
-        open(url) do |f|
-          f.each_line {|line| content += line}
-        end
-      rescue OpenURI::HTTPError => e
-         if !e.message.match('503').nil?
-          content = get_protected_content(url)  
-         else
-            raise OpenURI::HTTPError
-         end
-      end
+      # begin
+      #   open(url) do |f|
+      #     f.each_line {|line| content += line}
+      #   end
+      # rescue OpenURI::HTTPError => e
+      #    if !e.message.match('503').nil?
+      #     content = get_protected_content(url)  
+      #    else
+      #       raise OpenURI::HTTPError
+      #    end
+      # end
+      content = get_protected_content(url)
       content
     end
 
     ## This method fetches content of cloudflare protected URL's
-    def self.get_protected_content(url)
-        retries = 0
-        while(retries < 5)
+    def self.get_protected_content(url,try_again=true)
+          retries = 0
           Headless.ly do
             begin
               driver = Selenium::WebDriver.for :firefox
               driver.navigate.to url              
-              sleep(5 + retries)
-              page_source = driver.page_source
-              if page_source.match("cf-browser-verification cf-im-under-attack").blank?
-                return page_source 
-              end            
+              while(retries < 5)
+                page_source = driver.page_source
+                puts "retries #{retries}"
+                if page_source.match("cf-browser-verification cf-im-under-attack").blank?
+                  return page_source 
+                end
+                retries += 1
+                sleep(3 + retries) 
+              end
             rescue  StandardError => e
-               # Failed to get data                
+              get_protected_content(url,try_again=false) if try_again
             end
-             retries += 1
           end   
-        end
     end
   end
 end
