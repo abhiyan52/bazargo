@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application scrapes content from https://hamrobazar.com and displays the product in this application.Please visit 
 
-Things you may want to cover:
 
-* Ruby version
+The application has the following dependencies:
 
-* System dependencies
+* Rails(5.1.7)
 
-* Configuration
+* Redis
 
-* Database creation
+* Chrome Driver binaries and chrome browser
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Database(SQLITE)
 
 * ...
+
+Working:
+* The application uses Selenium with chrome or firefox webdriver
+* Selenium is used as the CloudFlare URL restricts OPENURI
+
+Installation:
+* sudo apt-get install xvfb
+* sudo apt-get install redis
+* git clone https://github.com/abhiyan52/bazargo.git
+* bundle install
+* rails db:migrate
