@@ -1,0 +1,8 @@
+<% unless @product.errors.present? %>
+  $("#product_render_point").html("<%=escape_javascript(render partial: "products/partials/product_card",locals: {product: @product})%>");
+  toastr.success("Product Fetched Sucessfully!")
+<% else %>
+  toastr.error("Failed to fetch product!")
+<% end %>
+$("#placeholder_loader").hide();
+$("#product_render_point").show();
