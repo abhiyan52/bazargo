@@ -45,8 +45,6 @@ module Scrapper
       content
     end
     
-
-    
     ## This method fetches content of cloudflare protected URL's
     def self.get_protected_content(url)
         retries = 0
