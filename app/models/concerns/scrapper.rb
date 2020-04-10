@@ -48,9 +48,9 @@ module Scrapper
     def self.get_protected_content(url)
         retries = 0
         while(retries < 5)
-          Headless.ly do
+          # Headless.ly do
             begin
-              driver = Selenium::WebDriver.for :firefox
+              driver = Selenium::WebDriver.for :chrome
               driver.navigate.to url              
               sleep(5 + retries)
               page_source = driver.page_source
@@ -62,7 +62,7 @@ module Scrapper
             end
              retries += 1
           end   
-        end
+        # end
     end
   end
 end

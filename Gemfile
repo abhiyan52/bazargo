@@ -66,6 +66,3 @@ gem 'sidekiq', '~>6.0.0'
 
 # This is required for selenium
 gem 'webdrivers'
-## This mimics a headless browser for fetching content
-gem 'headless'
-gem 'watir'
