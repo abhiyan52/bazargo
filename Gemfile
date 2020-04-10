@@ -69,3 +69,6 @@ gem 'webdrivers'
 
 ## This mimics a headless browser for fetching content
 gem 'headless'
+
+
+gem 'watir'
