@@ -1,6 +1,6 @@
 <div class="card mx-3 p-3">
  <h3 class="text-center">Please fill these Details</h3>
-<%= form_with(modal: :user,url: sign_in_user_path(), class: 'form-group',local: true) do |f|%>
+<%= form_with(modal: :user,url: sign_in_path(), class: 'form-group',local: true) do |f|%>
   <div class="form-group">
     <label for="user_full_name"> Email Address </label>
     <%= f.email_field :email, class: "form-control",placeholder: "Enter your email address"%>
@@ -12,5 +12,7 @@
   <div class="form-group">
     <button class="btn btn-primary">Sign In</button>
   </div>
+  <p>New User?  <a href="<%= sign_up_form_path() %>"> <span class="text-primary"> Sign Up </span></a> </p>
+ 
 <% end %>
 </div>
