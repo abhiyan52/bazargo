@@ -55,8 +55,14 @@
 
 @media only screen and (min-width : 150px) and (max-width : 780px) {
     .search {
-        width: 95%;
-        margin: 0 auto;
+        width: 90% !important;
+        margin-left: 2em;
+    }
+
+    .product-card {
+        min-width: none;
+        max-width: none;
+        margin: 1.4em;
     }
 
 }
