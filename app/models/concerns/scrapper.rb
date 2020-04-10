@@ -53,7 +53,6 @@ module Scrapper
               driver.navigate.to url              
               sleep(5 + retries)
               page_source = driver.page_source
-              puts "-------------- SLEEP OVER ----------------"
               if page_source.match("cf-browser-verification cf-im-under-attack").blank?
                 return page_source 
               end            
