@@ -6,7 +6,7 @@ class Product < ApplicationRecord
     # ActiveRecord Validation
 
     # Validate the url field
-    validates :url, presence: true, uniqueness: true, format: /https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/ix.freeze
+    validates :url, presence: true, uniqueness: true, format: /https:\/\/hamrobazaar\.com\/(m\/)*i[0-9]{7}-.*\.html/ix.freeze
     # Validate presence of title field
     validates :title, presence: true
     # Validation of Url

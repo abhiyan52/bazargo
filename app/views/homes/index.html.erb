@@ -60,7 +60,7 @@
                   searchURL = searchURL.slice(0,searchURL.indexOf("?"));      
                   $("#search_url").val(searchURL);
                 }
-                if (!searchURL.match(/https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/)) {
+                if (!searchURL.match(/https:\/\/hamrobazaar\.com\/(m\/)*i[0-9]{7}-.*\.html/)) {
                     toastr.error("Please enter a valid url");
                     e.preventDefault();
                     return false;
