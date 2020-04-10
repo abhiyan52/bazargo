@@ -52,6 +52,10 @@
 
             $("#search-form").submit(function (e) {
                 let searchURL = $("#search_url").val();
+                // Remove URL params 
+                if(searchURL.indexOf("?") != -1){
+                  searchURL = searchURL.slice(0,searchURL.indexOf("?"));      
+                }
                 if (!searchURL.match(/https:\/\/hamrobazaar\.com\/i[0-9]{7}-.*\.html/)) {
                     toastr.error("Please enter a valid url");
                     e.preventDefault();
