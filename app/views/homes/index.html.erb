@@ -45,7 +45,7 @@
             var requestPending = false;   
             $("#placeholder_loader").hide();
 
-            $("#search_url").keyup(function () {
+            $("#search_url").on('keyup paste',function () {
                 clearTimeout(submitTimeout);
                 submitTimeout = setTimeout(() => {
                     if(!requestPending)
