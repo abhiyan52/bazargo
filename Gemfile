@@ -60,7 +60,7 @@ gem 'devise'
 gem 'nokogiri'
 
 # Background processor
-gem 'sidekiq', '~>6.0.0'
+gem 'sidekiq', '~>6.2.1'
 
 # This is required for selenium
 gem 'webdrivers'
